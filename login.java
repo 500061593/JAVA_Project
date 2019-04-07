@@ -58,7 +58,7 @@ int ch;
   
         // close the file 
         fr.close(); 
-    } 
+    //} 
 }
 } 
 
@@ -120,7 +120,7 @@ int ch;
         // close the file 
         fr.close(); 
     } 
-}
+//}
 }
 
 
@@ -151,8 +151,8 @@ String email;
 String passwd;
 int type;
 Scanner scan=new Scanner(System.in);
-System.out.println("1:patient,2:doctor");
-type=scan.nextInt(); 
+//System.out.println("1:patient,2:doctor");
+//type=scan.nextInt(); 
   
 System.out.println("enter email:");  
 email=br.readLine();  
@@ -177,6 +177,7 @@ System.out.println(rs.getString("email")+"  "+rs.getString("passwd")+"  "+rs.get
 con.close(); 
 String username="";
 String date=""; 
+
 if(type==1){
 patient p=new patient();
 System.out.println("1:for profile,2:for medical records");
@@ -185,29 +186,33 @@ if(i==1){
 p.profile(email);}
 else if(i==2){
 System.out.println("enter username and date to view your medicla record");
-username=scan.nextLine();
-date=scan.nextLine();
+username=scan.next();
+date=scan.next();
 p.medrec_rd(username,date);
+}
 }
 else if(type==2){
 doctor d=new doctor();
 System.out.println("1:for read,2:for write medical records");
 int j=scan.nextInt();
 if(j==1){
-System.out.println("enter username and date to view your medicla record");
-username=scan.nextLine();
-date=scan.nextLine();
+System.out.println("enter username and date to view patient medicla record");
+username=scan.next();
+date=scan.next();
 d.medrec_rd(username,date);
 }
 else if(j==2){
 System.out.println("enter username and date to write the medicla record of patient");
-username=scan.nextLine();
-date=scan.nextLine();
+username=scan.next();
+
+date=scan.next();
+
 d.medrec_wr(username,date);
 }
 
 }
 }
 }
+
 
 
