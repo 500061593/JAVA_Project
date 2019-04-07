@@ -37,6 +37,29 @@ while(rs.next())
 System.out.println(rs.getString("email")+"  "+rs.getString("name")+"  "+rs.getString("dob")+"  "+rs.getString("address")+"  "+rs.getInt("phone")+"  "+rs.getString("medrec"));  
 con.close();
 }
+
+void medrec_rd(String username,String date)throws Exception{
+int ch; 
+  String filename=username.concat(date)+".txt";
+        // check if File exists or not 
+        FileReader fr=null; 
+        try
+        { 
+            fr = new FileReader(filename); 
+        } 
+        catch (FileNotFoundException fe) 
+        { 
+            System.out.println("File not found"); 
+        } 
+  
+        // read from FileReader till the end of file 
+        while ((ch=fr.read())!=-1) 
+            System.out.print((char)ch); 
+  
+        // close the file 
+        fr.close(); 
+    } 
+}
 } 
 
 
@@ -75,6 +98,28 @@ void medrec_wr(String username,String date)throws IOException
         System.out.println("Writing successful"); 
           
         fw.close();
+}
+void medrec_rd(String username,String date)throws Exception{
+int ch; 
+  String filename=username.concat(date)+".txt";
+        // check if File exists or not 
+        FileReader fr=null; 
+        try
+        { 
+            fr = new FileReader(filename); 
+        } 
+        catch (FileNotFoundException fe) 
+        { 
+            System.out.println("File not found"); 
+        } 
+  
+        // read from FileReader till the end of file 
+        while ((ch=fr.read())!=-1) 
+            System.out.print((char)ch); 
+  
+        // close the file 
+        fr.close(); 
+    } 
 }
 }
 
@@ -130,20 +175,36 @@ if (rs.next() == false) {
 while(rs.next())  
 System.out.println(rs.getString("email")+"  "+rs.getString("passwd")+"  "+rs.getInt("type"));  
 con.close(); 
- 
+String username="";
+String date=""; 
 if(type==1){
 patient p=new patient();
-
+System.out.println("1:for profile,2:for medical records");
 int i=scan.nextInt();
 if(i==1){
 p.profile(email);}
+else if(i==2){
+System.out.println("enter username and date to view your medicla record");
+username=scan.nextLine();
+date=scan.nextLine();
+p.medrec_rd(username,date);
 }
 else if(type==2){
 doctor d=new doctor();
+System.out.println("1:for read,2:for write medical records");
+int j=scan.nextInt();
+if(j==1){
+System.out.println("enter username and date to view your medicla record");
+username=scan.nextLine();
+date=scan.nextLine();
+d.medrec_rd(username,date);
+}
+else if(j==2){
 System.out.println("enter username and date to write the medicla record of patient");
-String username=scan.nextLine();
-String date=scan.nextLine();
+username=scan.nextLine();
+date=scan.nextLine();
 d.medrec_wr(username,date);
+}
 
 }
 }
